@@ -1,0 +1,74 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(45deg,#8460ed,#ff1252);
+}
+.menu {
+    position: relative;
+    width: 200px;
+    height: 200px;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu li {
+    position: absolute;
+    /* 나올 메뉴 위치 조정 */
+    left: 0;
+    list-style: none;
+    transform-origin: 100px;    
+    /* 회전 애니 속도 */
+    transition: 0.5s;
+    /* 뿌려지는 순서관련 연출 */
+    transition-delay: calc(0.1s * var(--i)) ;
+    /* 최초 위치 보정을 통한 들어가기 나가기 (아래 코드가 없으면 최초 왼쪽에서 노출 시작*/
+    transform: rotate(0deg) translateX(80px);
+}
+/* .active 스크립트 액션 추가 */
+.menu.active li{
+    /* 버튼 선택 시 메뉴 출현 시 회전 연출 및 나올 메뉴의 갯수 */
+    transform: rotate(calc(360deg / 8 * var(--i)));
+}
+.menu li a {
+    /* 나타나는 아이콘들에 박스 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+    /* 박스 안의 아이콘 정렬 */
+    transform: rotate(calc(360deg / -8 * var(--i)));
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+    color: #111;
+    transition: 0.5s;
+}
+.menu li a:hover {
+    color: #ff1252;
+}
+.toggle {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0px 4px rgba(0, 0, 0, 0.15);
+    font-size: 2em;
+    transition: transform 1.25s;
+}
+.menu.active .toggle {
+    transform: rotate(315deg);
+}
